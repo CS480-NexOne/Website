@@ -1,0 +1,37 @@
+﻿@using NexOneVS.Models
+@model NexOneVS.Models.MovieDB
+
+@{
+    
+}
+
+<h2>Now Playing</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td></td>
+                <td>Title</td>
+                <td>Release Date</td>
+                <td>Popularity</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (MovieDB.Result result in Model.results)
+            {
+                <tr>
+                    <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
+                    <td>@result.original_title</td>
+                    <td>@result.release_date</td>
+                    <td>@result.popularity</td>
+                    
+                </tr>
+            }
+            
+        </tbody>
+    </table>
+    
+
+    
+</div>
