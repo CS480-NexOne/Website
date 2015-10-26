@@ -9,7 +9,6 @@ namespace NexOneVS.Models
     {
         public string Name { get; set; }
         public double Rating { get; set; }
-        public Genre [] Genre { get; set; }
         public int Year { get; set; }
 
     }

@@ -5,9 +5,15 @@ using System.Web;
 
 namespace NexOneVS.Models
 {
-    public class Genre
+
+    public class MovieDB_Genre
     {
-        public string Name { get; set; }
-        
+        public Genre[] genres { get; set; }
+
+        public class Genre
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+        }
     }
 }

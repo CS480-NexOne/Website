@@ -1,7 +1,57 @@
 ﻿@using NexOneVS.Models
-@model NexOneVS.Models.MovieDB
-<h2><a href="#NOWPLAYING">Now Playing</a>    |    <a href="#DVDS">Go to DVD releases</a></h2>
-<h2>Now Playing</h2>
+@using NexOneVS.ViewModels
+@model ViewModel
+
+<div class="page-header">
+    <h1><a href="#NOWPLAYING">Now Playing</a>&nbsp;&nbsp;&nbsp;<small><a href="#DVDS">Go to DVD releases</a></small></h1>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Genres</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            @foreach (MovieDB_Genre.Genre genre in Model.Genres.genres)
+                            {
+                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" value="@genre.id">
+                                            @if (genre.name == "Science Fiction")
+                                            {
+                                                @Html.Raw("Sci-fi")
+                                            }
+                                            else
+                                            {
+                                                @genre.name
+                                            }
+
+
+                                        </label>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+
+    </div>
+</div>
+
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -15,17 +65,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (MovieDB.Result result in Model.results)
-            {
-                <tr>
-                    <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
-                    <td>@result.original_title</td>
-                    <td>Sample Genre</td>
-                    <td>@result.release_date</td>
-                    <td>@result.popularity</td>
-                    <td>Fandango Link Icon</td>
-                </tr>
-            }
+            @foreach (MovieDB.Result result in Model.Movies.results)
+                {
+                    <tr>
+                        <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
+                        <td>@result.original_title</td>
+                        <td>Sample Genre</td>
+                        <td>@result.release_date</td>
+                        <td>@result.popularity</td>
+                        <td>Fandango Link Icon</td>
+                    </tr>
+                }
         </tbody>
     </table>
 </div>
@@ -44,17 +94,17 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (MovieDB.Result result in Model.results)
-            {
-                <tr>
-                    <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
-                    <td>@result.original_title</td>
-                    <td>Sample Genre</td>
-                    <td>@result.release_date</td>
-                    <td>@result.popularity</td>
-                    <td>Fandango Link Icon</td>
-                </tr>
-            }
+            @*@foreach (MovieDB.Result result in Model.Movies)
+                {
+                    <tr>
+                        <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
+                        <td>@result.original_title</td>
+                        <td>Sample Genre</td>
+                        <td>@result.release_date</td>
+                        <td>@result.popularity</td>
+                        <td>Fandango Link Icon</td>
+                    </tr>
+                }*@
         </tbody>
     </table>
 </div>
