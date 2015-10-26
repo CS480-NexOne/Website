@@ -2,9 +2,32 @@
 @using NexOneVS.ViewModels
 @model ViewModel
 
+
+
 <div class="page-header">
     <h1><a href="#NOWPLAYING">Now Playing</a>&nbsp;&nbsp;&nbsp;<small><a href="#DVDS">Go to DVD releases</a></small></h1>
 </div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (MovieDB.Result result in Model.Movies.results)
+        {
+            if (!result.poster_path.IsEmpty())
+            {
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <a href="#" class="thumbnail">
+                        <img src="http://image.tmdb.org/t/p/w300/@result.poster_path" alt="@result.poster_path" class="img-responsive" />
+                    </a>
+                </div>
+            }
+
+
+
+        }
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-10">
@@ -45,14 +68,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-
-    </div>
-</div>
-
-
-<div class="table-responsive">
+@*<div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -66,19 +82,19 @@
         </thead>
         <tbody>
             @foreach (MovieDB.Result result in Model.Movies.results)
-                {
-                    <tr>
-                        <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
-                        <td>@result.original_title</td>
-                        <td>Sample Genre</td>
-                        <td>@result.release_date</td>
-                        <td>@result.popularity</td>
-                        <td>Fandango Link Icon</td>
-                    </tr>
-                }
+            {
+                <tr>
+                    <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
+                    <td>@result.original_title</td>
+                    <td>Sample Genre</td>
+                    <td>@result.release_date</td>
+                    <td>@result.popularity</td>
+                    <td>Fandango Link Icon</td>
+                </tr>
+            }
         </tbody>
     </table>
-</div>
+</div>*@
 
 <h2 id="DVDS">DVD's</h2>
 <div class="table-responsive">
