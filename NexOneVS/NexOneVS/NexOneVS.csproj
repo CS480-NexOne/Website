@@ -182,11 +182,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\MovieDB\Credit.cs" />
+    <Compile Include="Models\MovieDB\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieDB\MovieDB.cs" />
+    <Compile Include="Models\MovieDB\Title.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -261,6 +262,7 @@
     <Content Include="Views\Home\Games.cshtml" />
     <Content Include="Views\Home\Books.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Movies\Title.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

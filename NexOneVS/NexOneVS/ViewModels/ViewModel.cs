@@ -10,5 +10,6 @@ namespace NexOneVS.ViewModels
     {
         public MovieDB Movies { get; set; }
         public MovieDB_Genre Genres { get; set; }
+        public Title Title { get; set; }
     }
 }

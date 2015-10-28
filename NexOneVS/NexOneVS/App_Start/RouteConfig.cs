@@ -14,10 +14,18 @@ namespace NexOneVS
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Movie",
+                url: "Movies/Title/{id}",
+                defaults: new { controller = "Movies", action = "Title", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            
         }
     }
 }

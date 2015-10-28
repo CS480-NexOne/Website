@@ -32,5 +32,5 @@ namespace NexOneVS.Models
         }
 
     }
-    
+
 }

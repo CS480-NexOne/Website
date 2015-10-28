@@ -26,6 +26,93 @@ namespace NexOneVS.Controllers
             
             return View(mymodel);
         }
+        public ActionResult Title()
+        {
+
+            string movieID;
+            try
+            {
+                movieID = Url.RequestContext.RouteData.Values["id"].ToString();
+                ViewModel mymodel = new ViewModel();  //to add more than 1 models in view
+                mymodel.Title = getSpecificTitle(movieID);
+                return View(mymodel);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+
+            
+
+        }
+
+        private Title getSpecificTitle(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Title title = new Title();
+
+                    title = JsonConvert.DeserializeObject<Title>(json);
+
+                    return title;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
+        }
+
+        private Title getCast(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}/credits?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Title title = new Title();
+
+                    title = JsonConvert.DeserializeObject<Title>(json);
+
+                    return title;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
+        }
 
         private MovieDB getNew()
         {
@@ -49,11 +136,7 @@ namespace NexOneVS.Controllers
                     mdb = JsonConvert.DeserializeObject<MovieDB>(json);
 
                     return mdb;
-                  
-
-
                 }
-                
             }
 
             catch (WebException ex)

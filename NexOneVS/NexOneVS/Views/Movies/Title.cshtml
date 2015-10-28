@@ -1,0 +1,130 @@
+﻿@using System.Globalization
+@using NexOneVS.Models
+@using NexOneVS.ViewModels
+@model ViewModel
+@{
+    ViewBag.Title = "NEXT";
+}
+
+<div class="container">
+
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <a href="@Model.Title.homepage" target="_blank">
+                    @Model.Title.original_title
+                </a>
+                <small>@Model.Title.release_date.Substring(0, 4)</small>
+            </h1>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <img src="http://image.tmdb.org/t/p/w500/@Model.Title.poster_path" alt="@Model.Title.original_title" class="img-responsive" />
+
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <h3>
+                Overview
+
+            </h3>
+            <p>
+                @Model.Title.overview
+            </p>
+            <h3>
+                Genres
+            </h3>
+            <p>
+                @foreach (Genre genre in Model.Title.genres)
+                {
+                    <label class="label label-default" style="padding:5px; font-size:15px">@genre.name</label>
+
+                }
+                <br /><br />
+            </p>
+            <h3>Statistics</h3>
+
+            <ul>
+                <li><b>Runtime: </b>@(String.Format("{0} {1}", Model.Title.runtime, "min"))</li>
+                @if (Model.Title.budget > 0)
+                {
+                    <li><b>Budget: </b>@(String.Format("{0}{1}", "$", Model.Title.budget.ToString("N0")))</li>
+                }
+                @if (Model.Title.revenue > 0)
+                {
+                    <li><b>Revenue: </b>@(String.Format("{0}{1}", "$", Model.Title.revenue.ToString("N0")))</li>
+                }
+                @if (Model.Title.imdb_id != "")
+                {
+                    <li><b><i class="fa fa-film"></i> </b><a href="@(String.Format("{0}{1}", "http://www.imdb.com/title/", Model.Title.imdb_id ))" target="_blank">IMDB Link</a></li>
+                }
+
+            </ul>
+            <p>
+                <br />
+                <button class="btn btn-default" type="submit"><i class="fa fa-plus" style="padding-right:10px"></i>Add to my list</button>
+                <button class="btn btn-default" type="submit"><i class="fa fa-undo" style="padding-right:10px"></i>Return to movies</button>
+            </p>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <h3>
+                Cast
+            </h3>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Reviews and Trailer</h3>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-3 col-xs-6">
+
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h3 class="page-header">Related</h3>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
