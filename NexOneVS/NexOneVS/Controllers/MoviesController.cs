@@ -16,7 +16,8 @@ namespace NexOneVS.Controllers
 {
     public class MoviesController : Controller
     {
-        private string apikey = System.Configuration.ConfigurationManager.AppSettings["MovieDB_API_Key"].ToString();
+        //private string apikey = System.Configuration.ConfigurationManager.AppSettings["MovieDB_API_Key"].ToString();
+        private string apikey = "becd4a5c2dc9c687bd6727ff81c7ad2e";
         // GET: Movies
         public ActionResult Index()
         {
@@ -114,7 +115,7 @@ namespace NexOneVS.Controllers
             //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
-        private MovieDB getNew()
+        public MovieDB getNew()
         {
             string url = string.Format("http://api.themoviedb.org/3/movie/now_playing?&api_key={0}", apikey);
 
@@ -145,10 +146,10 @@ namespace NexOneVS.Controllers
             }
         }
 
-        private MovieDB getMoviesWithCategory()
+        public MovieDB getMoviesWithCategory()
         {
-
-            return null;
+            MovieDB x = new MovieDB();
+            return x;
         }
 
         private MovieDB_Genre getGenreList()

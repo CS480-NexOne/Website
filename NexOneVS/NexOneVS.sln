@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexOneVS", "NexOneVS\NexOneVS.csproj", "{BF298758-FC37-4B08-BE28-2592380321A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NexOneTest", "NexOneTest\NexOneTest.csproj", "{7964954C-DA56-4677-BF3D-654C1A11586E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BF298758-FC37-4B08-BE28-2592380321A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF298758-FC37-4B08-BE28-2592380321A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF298758-FC37-4B08-BE28-2592380321A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7964954C-DA56-4677-BF3D-654C1A11586E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7964954C-DA56-4677-BF3D-654C1A11586E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7964954C-DA56-4677-BF3D-654C1A11586E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7964954C-DA56-4677-BF3D-654C1A11586E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
