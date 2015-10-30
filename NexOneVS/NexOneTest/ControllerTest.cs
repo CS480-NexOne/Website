@@ -15,8 +15,11 @@ namespace NexOneTest
     [TestClass]
     public class ControllerTest
     {
+        private string movieID = "135397";
+
+        [Owner("Chan")]
         [TestMethod]
-        public void TestMethod1()
+        public void TestMovieView()
         {
             MoviesController mc = new NexOneVS.Controllers.MoviesController();
 
@@ -25,5 +28,22 @@ namespace NexOneTest
             Assert.IsNotNull(vr);
 
         }
+
+        [Owner("Chan")]
+        [TestMethod]
+        public void TestCreditParsing()
+        {
+            MoviesController mc = new NexOneVS.Controllers.MoviesController();
+            Assert.IsNotNull(mc.getCredit(movieID));
+        }
+
+        [Owner("Chan")]
+        [TestMethod]
+        public void TestMovieParsing()
+        {
+            MoviesController mc = new NexOneVS.Controllers.MoviesController();
+            Assert.IsNotNull(mc.getNew());
+        }
+        
     }
 }

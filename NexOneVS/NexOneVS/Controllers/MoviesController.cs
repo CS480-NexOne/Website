@@ -47,7 +47,7 @@ namespace NexOneVS.Controllers
 
         }
 
-        private Title getSpecificTitle(string id)
+        public Title getSpecificTitle(string id)
         {
 
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", id, apikey);
@@ -81,7 +81,7 @@ namespace NexOneVS.Controllers
             //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
-        private Title getCast(string id)
+        public Credit getCredit(string id)  
         {
 
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/credits?api_key={1}", id, apikey);
@@ -99,11 +99,11 @@ namespace NexOneVS.Controllers
                     String json = reader.ReadToEnd();
                     JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
 
-                    Title title = new Title();
+                    Credit credit = new Credit();
 
-                    title = JsonConvert.DeserializeObject<Title>(json);
+                    credit = JsonConvert.DeserializeObject<Credit>(json);
 
-                    return title;
+                    return credit;
                 }
             }
 
@@ -148,8 +148,7 @@ namespace NexOneVS.Controllers
 
         public MovieDB getMoviesWithCategory()
         {
-            MovieDB x = new MovieDB();
-            return x;
+            return null;
         }
 
         private MovieDB_Genre getGenreList()
