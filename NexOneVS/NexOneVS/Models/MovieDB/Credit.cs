@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NexOneVS.Models
+namespace NexOneVS.Models.Movie
 {
 
     public class Credit

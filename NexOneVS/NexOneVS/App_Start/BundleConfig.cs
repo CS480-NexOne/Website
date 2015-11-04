@@ -23,9 +23,24 @@ namespace NexOneVS
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/owl-carousel").Include(
+                      "~/Scripts/owl.carousel.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/site.css",
+                      "~/Content/owl.carousel.css",
+                      "~/Content/owl.theme.css",
+                      "~/Content/owl.transitions.css"
+                      ));
+
+            bundles.Add(new StyleBundle("~/Content/Theme/css").Include(
+                      "~/Content/bootstrap-slate.min.css",
+                      "~/Content/site.css",
+                      "~/Content/owl.carousel.css",
+                      "~/Content/owl.theme.css",
+                      "~/Content/owl.transitions.css"
+                      ));
         }
     }
 }

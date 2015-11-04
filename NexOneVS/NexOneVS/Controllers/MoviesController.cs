@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NexOneVS.Models;
+using NexOneVS.Models.Movie;
 using Newtonsoft.Json;
 using System.Net;
 using System.IO;
@@ -24,7 +24,7 @@ namespace NexOneVS.Controllers
             ViewModel mymodel = new ViewModel();  //to add more than 1 models in view
             mymodel.Movies = getNew();
             mymodel.Genres = getGenreList();
-            
+                       
             return View(mymodel);
         }
         public ActionResult Title()
@@ -35,7 +35,11 @@ namespace NexOneVS.Controllers
             {
                 movieID = Url.RequestContext.RouteData.Values["id"].ToString();
                 ViewModel mymodel = new ViewModel();  //to add more than 1 models in view
-                mymodel.Title = getSpecificTitle(movieID);
+                mymodel.Title = getTitle(movieID);
+                mymodel.Credit = getCredit(movieID);
+                mymodel.Video = getVideo(movieID);
+                mymodel.Image = getImage(movieID);
+                mymodel.Similar = getSimilar(movieID);
                 return View(mymodel);
             }
             catch (Exception)
@@ -47,7 +51,7 @@ namespace NexOneVS.Controllers
 
         }
 
-        public Title getSpecificTitle(string id)
+        public Title getTitle(string id)
         {
 
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", id, apikey);
@@ -81,6 +85,109 @@ namespace NexOneVS.Controllers
             //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
+        public Video getVideo(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}/videos?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Video vid = new Video();
+
+                    vid = JsonConvert.DeserializeObject<Video>(json);
+
+                    return vid;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
+        }
+
+        public Similar getSimilar(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}/similar?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Similar sim = new Similar();
+
+                    sim = JsonConvert.DeserializeObject<Similar>(json);
+
+                    return sim;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
+        }
+
+        public Image getImage(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}/images?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Image img = new Image();
+
+                    img = JsonConvert.DeserializeObject<Image>(json);
+
+                    return img;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
+        }
+
+
         public Credit getCredit(string id)  
         {
 
@@ -112,7 +219,6 @@ namespace NexOneVS.Controllers
                 return null;
             }
 
-            //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
         public MovieDB getNew()
