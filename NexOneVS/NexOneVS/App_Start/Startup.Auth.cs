@@ -58,11 +58,11 @@ namespace NexOneVS
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "575185963910-6sgvb238533q5mn6pqdmtlb2g5l529mr.apps.googleusercontent.com",
+                ClientSecret = "fzejis2KGxaPxysO29LlP2kc"
+            });
         }
     }
 }
