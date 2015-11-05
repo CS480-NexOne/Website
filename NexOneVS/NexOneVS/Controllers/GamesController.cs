@@ -20,13 +20,13 @@ namespace NexOneVS.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            GameDB.Rootobject mygames = getNew();
+            Game mygames = getNew();
             //GameDB.Rootobject myGames = getNew();
 
             return View(mygames);
         }
 
-        public GameDB.Rootobject getNew()
+        public Game getNew()
         {
             string url = "http://www.giantbomb.com/api/search/?api_key=5195eec3fb1e59945f162c69ea935220a616fd95&format=json&query=%22fallout%22&resources=game";
 
@@ -43,9 +43,9 @@ namespace NexOneVS.Controllers
                     String json = reader.ReadToEnd();
                     JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
 
-                    GameDB.Rootobject gdb = new GameDB.Rootobject();
+                    Game gdb = new Game();
 
-                    gdb = JsonConvert.DeserializeObject<GameDB.Rootobject>(json);
+                    gdb = JsonConvert.DeserializeObject<Game>(json);
 
                     return gdb;
                 }

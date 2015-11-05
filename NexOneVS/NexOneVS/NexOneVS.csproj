@@ -182,6 +182,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\GameDB\Game.cs" />
     <Compile Include="Models\GameDB\GameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
@@ -215,6 +216,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\nexone.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Images\brand.png" />
     <Content Include="Images\usericon.png" />
@@ -278,10 +280,10 @@
     <Content Include="Views\Movies\Title.cshtml" />
     <Content Include="Views\Movies\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutMovie.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Games\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

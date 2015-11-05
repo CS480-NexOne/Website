@@ -1,7 +1,8 @@
-﻿@model NexOneVS.Models.GameDB.GameDB.Rootobject
+﻿@model NexOneVS.Models.GameDB.Game
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>@Model.limit</h2>
+@Html.Raw(@Model.results[1].description)
+
 
