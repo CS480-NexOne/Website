@@ -15,6 +15,7 @@ namespace NexOneVS.ViewModels
         public Video Video { get; set; }
         public Image Image { get; set; }
         public Similar Similar { get; set; }
+        public Review Review { get; set; }
 
     }
 }

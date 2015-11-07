@@ -190,6 +190,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MovieDB\Image.cs" />
     <Compile Include="Models\MovieDB\MovieDB.cs" />
+    <Compile Include="Models\MovieDB\Review.cs" />
     <Compile Include="Models\MovieDB\Similar.cs" />
     <Compile Include="Models\MovieDB\Title.cs" />
     <Compile Include="Models\MovieDB\Video.cs" />

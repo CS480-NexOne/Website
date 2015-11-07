@@ -40,6 +40,7 @@ namespace NexOneVS.Controllers
                 mymodel.Video = getVideo(movieID);
                 mymodel.Image = getImage(movieID);
                 mymodel.Similar = getSimilar(movieID);
+                mymodel.Review = getReview(movieID);
                 return View(mymodel);
             }
             catch (Exception)
@@ -49,6 +50,40 @@ namespace NexOneVS.Controllers
 
             
 
+        }
+
+        public Review getReview(string id)
+        {
+
+            string url = string.Format("http://api.themoviedb.org/3/movie/{0}/reviews?api_key={1}", id, apikey);
+
+            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebResponse response;
+
+            try
+            {
+                response = request.GetResponse() as HttpWebResponse;
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
+                    String json = reader.ReadToEnd();
+                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
+
+                    Review review = new Review();
+
+                    review = JsonConvert.DeserializeObject<Review>(json);
+
+                    return review;
+                }
+            }
+
+            catch (WebException ex)
+            {
+                return null;
+            }
+
+            //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
         public Title getTitle(string id)
