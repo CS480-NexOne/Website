@@ -75,7 +75,7 @@ namespace NexOneVS.Controllers
             //return RedirectToAction("Index");
 
             //ViewBag.UserID = new SelectList(db.AspNetUsers, "Id", "Email", queue.UserID);
-            return View();
+            return RedirectToAction("MyList", "Manage");
         }
 
 
