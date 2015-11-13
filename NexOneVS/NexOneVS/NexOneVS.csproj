@@ -65,6 +65,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -178,10 +180,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Controllers\QueuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>QueueDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GameDB\Game.cs" />
     <Compile Include="Models\GameDB\GameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
@@ -194,6 +200,24 @@
     <Compile Include="Models\MovieDB\Similar.cs" />
     <Compile Include="Models\MovieDB\Title.cs" />
     <Compile Include="Models\MovieDB\Video.cs" />
+    <Compile Include="Models\Queue.cs">
+      <DependentUpon>QueueDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QueueDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QueueDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QueueDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QueueDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QueueDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QueueDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
@@ -217,6 +241,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\QueueDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QueueDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\QueueDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QueueDataModel.edmx</DependentUpon>
+      <LastGenOutput>QueueDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\QueueDataModel.edmx.diagram">
+      <DependentUpon>QueueDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\QueueDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QueueDataModel.edmx</DependentUpon>
+      <LastGenOutput>QueueDataModel.cs</LastGenOutput>
+    </Content>
     <None Include="Properties\PublishProfiles\nexone.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Images\brand.png" />
@@ -282,13 +323,23 @@
     <Content Include="Views\Movies\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutMovie.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\Queues\Create.cshtml" />
+    <Content Include="Views\Queues\Delete.cshtml" />
+    <Content Include="Views\Queues\Details.cshtml" />
+    <Content Include="Views\Queues\Edit.cshtml" />
+    <Content Include="Views\Queues\Index.cshtml" />
+    <Content Include="Views\Manage\MyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Queue\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

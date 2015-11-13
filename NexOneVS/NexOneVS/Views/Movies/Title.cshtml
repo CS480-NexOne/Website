@@ -2,9 +2,6 @@
 @using NexOneVS.Models.Movie
 @using NexOneVS.ViewModels
 @model ViewModel
-@{
-    ViewBag.Title = "NEXT";
-}
 
 <div class="container">
 
@@ -65,11 +62,18 @@
                 }
 
             </ul>
-            <p>
-                <br />
-                <button class="btn btn-default" type="submit"><i class="fa fa-plus" style="padding-right:10px"></i>Add to my list</button>
-                <button class="btn btn-default" type="submit"><i class="fa fa-undo" style="padding-right:10px"></i>Return to movies</button>
-            </p>
+            @using (Html.BeginForm("AddToList", "Movies", new { id = Model.Title.id }))
+            {
+                <p>
+                    <br />
+
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus paddingR10"></i> Add to my list
+                    </button>
+                    <a href="/Movies" class="btn btn-default"><i class="fa fa-undo" style="padding-right:10px"></i>Return to movies</a>
+                </p>
+            }
         </div>
         <div class="col-md-4 col-sm-6 col-xs-12">
             <h3>

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,11 +11,14 @@ using NexOneVS.Models;
 
 namespace NexOneVS.Controllers
 {
+
     [Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+
 
         public ManageController()
         {
@@ -330,6 +334,36 @@ namespace NexOneVS.Controllers
 
             base.Dispose(disposing);
         }
+
+        public ActionResult MyList()
+        {
+            using(var db = new QueueContext())
+            {
+                string id = User.Identity.GetUserId();
+
+                var query = (from tblQueue in db.Queues
+                             where tblQueue.UserID == id
+                             select tblQueue);
+
+                return View(query.ToList());
+            }
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            using(var db = new QueueContext())
+            {
+                Queue queue = db.Queues.Find(id);
+                db.Queues.Remove(queue);
+                db.SaveChanges();
+                return RedirectToAction("MyList");
+            }
+            
+        }
+
 
 #region Helpers
         // Used for XSRF protection when adding external logins

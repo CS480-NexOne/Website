@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using NexOneVS.Models.Movie;
 using Newtonsoft.Json;
@@ -9,8 +6,10 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using System.Text;
-using System.Dynamic;
 using NexOneVS.ViewModels;
+using NexOneVS.Models;
+using System.Web.UI;
+using Microsoft.AspNet.Identity;
 
 namespace NexOneVS.Controllers
 {
@@ -18,13 +17,14 @@ namespace NexOneVS.Controllers
     {
         //private string apikey = System.Configuration.ConfigurationManager.AppSettings["MovieDB_API_Key"].ToString();
         private string apikey = "becd4a5c2dc9c687bd6727ff81c7ad2e";
+        private QueueContext db = new QueueContext();
         // GET: Movies
         public ActionResult Index()
         {
             ViewModel mymodel = new ViewModel();  //to add more than 1 models in view
             mymodel.Movies = getNew();
             mymodel.Genres = getGenreList();
-                       
+
             return View(mymodel);
         }
         public ActionResult Title()
@@ -48,9 +48,37 @@ namespace NexOneVS.Controllers
                 return View();
             }
 
-            
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToList(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", new { returnUrl = "/Movies/Title/" + id.ToString() });
+                
+            }
+
+            Queue item = new Queue()
+            {
+                IDforAPI = id.ToString(),
+                Type = "Movie",
+                CreatedDate = DateTime.Now,
+                UserID = User.Identity.GetUserId()
+            };
+
+
+            db.Queues.Add(item);
+            db.SaveChanges();
+            //return RedirectToAction("Index");
+
+            //ViewBag.UserID = new SelectList(db.AspNetUsers, "Id", "Email", queue.UserID);
+            return View();
+        }
+
+
 
         public Review getReview(string id)
         {
@@ -223,7 +251,7 @@ namespace NexOneVS.Controllers
         }
 
 
-        public Credit getCredit(string id)  
+        public Credit getCredit(string id)
         {
 
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/credits?api_key={1}", id, apikey);
