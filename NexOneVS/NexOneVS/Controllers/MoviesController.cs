@@ -10,6 +10,7 @@ using NexOneVS.ViewModels;
 using NexOneVS.Models;
 using System.Web.UI;
 using Microsoft.AspNet.Identity;
+using NexOneVS.Utility;
 
 namespace NexOneVS.Controllers
 {
@@ -29,7 +30,6 @@ namespace NexOneVS.Controllers
         }
         public ActionResult Title()
         {
-
             string movieID;
             try
             {
@@ -47,8 +47,6 @@ namespace NexOneVS.Controllers
             {
                 return View();
             }
-
-
         }
 
         [HttpPost]
@@ -58,7 +56,7 @@ namespace NexOneVS.Controllers
             if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Login", "Account", new { returnUrl = "/Movies/Title/" + id.ToString() });
-                
+
             }
 
             Queue item = new Queue()
@@ -82,205 +80,58 @@ namespace NexOneVS.Controllers
 
         public Review getReview(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/reviews?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Review review = new Review();
-
-                    review = JsonConvert.DeserializeObject<Review>(json);
-
-                    return review;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-
-            //return View(Url.RequestContext.RouteData.Values["id"]);
+            Review review = new Review();
+            review = JsonConvert.DeserializeObject<Review>(ApiCall.ApiGET(url));
+            return review;
         }
 
         public Title getTitle(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Title title = new Title();
-
-                    title = JsonConvert.DeserializeObject<Title>(json);
-
-                    return title;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-
-            //return View(Url.RequestContext.RouteData.Values["id"]);
+            Title title = new Title();
+            title = JsonConvert.DeserializeObject<Title>(ApiCall.ApiGET(url));
+            return title;
         }
 
         public Video getVideo(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/videos?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Video vid = new Video();
-
-                    vid = JsonConvert.DeserializeObject<Video>(json);
-
-                    return vid;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-
-            //return View(Url.RequestContext.RouteData.Values["id"]);
+            Video vid = new Video();
+            vid = JsonConvert.DeserializeObject<Video>(ApiCall.ApiGET(url));
+            return vid;
         }
 
         public Similar getSimilar(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/similar?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
+            Similar sim = new Similar();
+            sim = JsonConvert.DeserializeObject<Similar>(ApiCall.ApiGET(url));
+            return sim;
 
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Similar sim = new Similar();
-
-                    sim = JsonConvert.DeserializeObject<Similar>(json);
-
-                    return sim;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-
-            //return View(Url.RequestContext.RouteData.Values["id"]);
         }
 
         public Image getImage(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/images?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Image img = new Image();
-
-                    img = JsonConvert.DeserializeObject<Image>(json);
-
-                    return img;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-
-            //return View(Url.RequestContext.RouteData.Values["id"]);
+            Image img = new Image();
+            img = JsonConvert.DeserializeObject<Image>(ApiCall.ApiGET(url));
+            return img;
         }
 
 
         public Credit getCredit(string id)
         {
-
             string url = string.Format("http://api.themoviedb.org/3/movie/{0}/credits?api_key={1}", id, apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    Credit credit = new Credit();
-
-                    credit = JsonConvert.DeserializeObject<Credit>(json);
-
-                    return credit;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
+            Credit credit = new Credit();
+            credit = JsonConvert.DeserializeObject<Credit>(ApiCall.ApiGET(url));
+            return credit;
 
         }
 
@@ -288,68 +139,18 @@ namespace NexOneVS.Controllers
         {
             string url = string.Format("http://api.themoviedb.org/3/movie/now_playing?&api_key={0}", apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    MovieDB mdb = new MovieDB();
-
-                    mdb = JsonConvert.DeserializeObject<MovieDB>(json);
-
-                    return mdb;
-                }
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
-        }
-
-        public MovieDB getMoviesWithCategory()
-        {
-            return null;
+            MovieDB mdb = new MovieDB();
+            mdb = JsonConvert.DeserializeObject<MovieDB>(ApiCall.ApiGET(url));
+            return mdb;
         }
 
         private MovieDB_Genre getGenreList()
         {
             string url = string.Format("http://api.themoviedb.org/3/genre/movie/list?&api_key={0}", apikey);
 
-            HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-            HttpWebResponse response;
-
-            try
-            {
-                response = request.GetResponse() as HttpWebResponse;
-
-                using (Stream responseStream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(responseStream, Encoding.UTF8);
-                    String json = reader.ReadToEnd();
-                    JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
-
-                    MovieDB_Genre genrelist = new MovieDB_Genre();
-
-                    genrelist = JsonConvert.DeserializeObject<MovieDB_Genre>(json);
-
-                    return genrelist;
-                }
-
-            }
-
-            catch (WebException ex)
-            {
-                return null;
-            }
+            MovieDB_Genre genrelist = new MovieDB_Genre();
+            genrelist = JsonConvert.DeserializeObject<MovieDB_Genre>(ApiCall.ApiGET(url));
+            return genrelist;
         }
     }
 }
