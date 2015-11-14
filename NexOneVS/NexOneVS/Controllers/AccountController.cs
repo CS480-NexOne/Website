@@ -80,7 +80,7 @@ namespace NexOneVS.Controllers
             {
                 case SignInStatus.Success:
 
-                    if (returnUrl == "")
+                    if (returnUrl == null)
                         return RedirectToLocal(returnUrl);
                     return Redirect(returnUrl);
                 case SignInStatus.LockedOut:
