@@ -26,4 +26,18 @@ textarea {
 .paddingR10 {
     padding-right:10px;
 }
+.paddingL5 {
+    padding-left:5px;
+}
 
+.topOffset20 {
+    padding-top: 20px;
+}
+
+.green-c {
+    color: green;
+}
+
+.red-c {
+    color: red;
+}

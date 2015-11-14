@@ -51,7 +51,7 @@ namespace NexOneVS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddToList(int id)
+        public ActionResult AddToList(int id, string name, string image)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -64,7 +64,10 @@ namespace NexOneVS.Controllers
                 IDforAPI = id.ToString(),
                 Type = "Movie",
                 CreatedDate = DateTime.Now,
-                UserID = User.Identity.GetUserId()
+                UserID = User.Identity.GetUserId(),
+                ImagePath = image,
+                ItemName = name,
+                Watched = false 
             };
 
 

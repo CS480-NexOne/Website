@@ -62,7 +62,7 @@
                 }
 
             </ul>
-            @using (Html.BeginForm("AddToList", "Movies", new { id = Model.Title.id }))
+            @using (Html.BeginForm("AddToList", "Movies", new { id = Model.Title.id, name = Model.Title.original_title, image = @Model.Title.poster_path }))
             {
                 <p>
                     <br />

@@ -11,17 +11,17 @@ namespace NexOneVS.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
-    
     
     public partial class Queue
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string IDforAPI { get; set; }
         public string Type { get; set; }
         public System.DateTime CreatedDate { get; set; }
         public string UserID { get; set; }
+        public string ImagePath { get; set; }
+        public string ItemName { get; set; }
+        public bool Watched { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

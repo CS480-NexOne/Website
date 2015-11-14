@@ -4,7 +4,7 @@
     ViewBag.Title = "Manage";
 }
 
-<h2><i class="fa fa-user paddingR10"></i>My Account</h2>
+<h2><i class="fa fa-user paddingR10 topOffset20"></i>My Account</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
@@ -32,7 +32,13 @@
             }
             ]
         </dd>
-        
+    </dl>
+    <br />
+    <dl class="dl-horizontal">
+        <dt>My list:</dt>
+        <dd>
+            @Html.ActionLink("Go to my list", "MyList")
+        </dd>
     </dl>
 </div>
 

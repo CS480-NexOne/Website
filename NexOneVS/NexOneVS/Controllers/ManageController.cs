@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NexOneVS.Models;
+using NexOneVS.ViewModels;
 
 namespace NexOneVS.Controllers
 {
@@ -337,15 +338,19 @@ namespace NexOneVS.Controllers
 
         public ActionResult MyList()
         {
+            ListViewModel mymodel = new ListViewModel();
+
             using(var db = new QueueContext())
             {
                 string id = User.Identity.GetUserId();
 
                 var query = (from tblQueue in db.Queues
-                             where tblQueue.UserID == id
+                             orderby tblQueue.CreatedDate descending
+                             where (tblQueue.UserID == id && tblQueue.Watched == false)
                              select tblQueue);
+                mymodel.Queue = query.ToList();
 
-                return View(query.ToList());
+                return View(mymodel);
             }
             
         }
