@@ -49,6 +49,18 @@ namespace NexOneVS.Controllers
             }
         }
 
+        public ActionResult Search(string query)
+        {
+            ViewBag.Query = query;
+            string url = string.Format("http://api.themoviedb.org/3/search/movie?&api_key={0}&query={1}", apikey, query);
+
+            SearchViewModel svm = new SearchViewModel();
+            svm.Movies = JsonConvert.DeserializeObject<MovieDB>(ApiCall.ApiGET(url));
+            svm.Query = query;
+
+            return View(svm);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddToList(int id, string name, string image)
@@ -78,6 +90,8 @@ namespace NexOneVS.Controllers
             //ViewBag.UserID = new SelectList(db.AspNetUsers, "Id", "Email", queue.UserID);
             return RedirectToAction("MyList", "Manage");
         }
+
+
 
 
 

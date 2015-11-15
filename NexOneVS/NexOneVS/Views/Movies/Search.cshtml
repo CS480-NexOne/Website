@@ -1,0 +1,61 @@
+﻿@using NexOneVS.ViewModels
+@using NexOneVS.Models.Movie
+@model SearchViewModel
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="page-header">
+    <h1 class="text-warning">Search</h1>
+</div>
+
+<div class="well topOffset20">
+    <div class="container-fluid clearfix">
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2">
+
+
+                @using (Html.BeginForm("Search", "Movies"))
+                {
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" value="@Model.Query">
+                        <span class="input-group-btn paddingL5">
+                            <button class="btn btn-warning" type="submit">Search</button>
+                        </span>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.Movies != null)
+{
+    <div class="container-fluid topOffset20">
+        <div class="row">
+            @{ int i = 1; }
+
+            @foreach (MovieDB.Result result in Model.Movies.results)
+            {
+                if (!result.poster_path.IsEmpty())
+                {
+                    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                        <a href="@Url.Action("Title", "Movies", new { id = result.id })" class="thumbnail">
+                            <img src="http://image.tmdb.org/t/p/w300/@result.poster_path" alt="@result.poster_path" class="img-responsive" />
+                        </a>
+                    </div>
+
+                }
+                if (i % 6 == 0)
+                {
+                    <div class="clearfix visible-lg-block"></div>
+                }
+                i++;
+            }
+        </div>
+    </div>
+}
+
+

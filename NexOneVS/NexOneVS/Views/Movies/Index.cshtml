@@ -5,11 +5,31 @@
 
 
 <div class="page-header">
-    <h1><a href="#NOWPLAYING">Now Playing</a>&nbsp;&nbsp;&nbsp;<small><a href="#DVDS">Go to DVD releases</a></small></h1>
+    <h1 class="text-info">Now playing</h1>
+</div>
+<div class="well topOffset20">
+    <div class="container-fluid clearfix">
+        <div class="row">
+
+            <div class="col-lg-8 col-lg-offset-2">
+
+
+                @using (Html.BeginForm("Search", "Movies"))
+                {
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Search for movies...">
+                        <span class="input-group-btn paddingL5">
+                            <button class="btn btn-warning" type="submit">Search</button>
+                        </span>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
 </div>
 
-
-<div class="container-fluid">
+<div class="container-fluid topOffset20">
     <div class="row">
         @{ int i = 1; }
 
@@ -33,45 +53,47 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-8 col-md-8 col-sm-10">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Genres</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="container-fluid">
-                        <div class="row">
-
-                            @foreach (Genre genre in Model.Genres.genres)
-                            {
-                                <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" value="@genre.id">
-                                            @if (genre.name == "Science Fiction")
-                                            {
-                                                @Html.Raw("Sci-fi")
-                                            }
-                                            else
-                                            {
-                                                @genre.name
-                                            }
 
 
-                                        </label>
+@*<div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Genres</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                @foreach (Genre genre in Model.Genres.genres)
+                                {
+                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="@genre.id">
+                                                @if (genre.name == "Science Fiction")
+                                                {
+                                                    @Html.Raw("Sci-fi")
+                                                }
+                                                else
+                                                {
+                                                    @genre.name
+                                                }
+
+
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
-                            }
+                                }
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </div>*@
 
 @*<div class="table-responsive">
         <table class="table table-striped">
@@ -101,31 +123,4 @@
         </table>
     </div>*@
 
-<h2 id="DVDS">DVD's</h2>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <td></td>
-                <td>Title</td>
-                <td>Genre</td>
-                <td>Release Date</td>
-                <td>Popularity</td>
-                <td>Links</td>
-            </tr>
-        </thead>
-        <tbody>
-            @*@foreach (MovieDB.Result result in Model.Movies)
-                {
-                    <tr>
-                        <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
-                        <td>@result.original_title</td>
-                        <td>Sample Genre</td>
-                        <td>@result.release_date</td>
-                        <td>@result.popularity</td>
-                        <td>Fandango Link Icon</td>
-                    </tr>
-                }*@
-        </tbody>
-    </table>
-</div>
+

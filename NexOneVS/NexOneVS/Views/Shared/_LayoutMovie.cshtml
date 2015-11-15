@@ -24,11 +24,17 @@
                         <img alt="Brand" src="~/Images/brand.png">
                     </a>
                 </div>
-                @*@Html.ActionLink("Next On My List", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="~/Movies"><span class="fa fa-film paddingR10"></span>Movies</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="paddingR10"><i class="fa fa-film paddingR10"></i>Movies</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Movies"><i class="fa fa-play paddingR10 text-info"></i>Now playing</a></li>
+                            <li><a href="~/Movies/Search"><i class="fa fa-search paddingR10 text-warning"></i>Search</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="~/Games"><span class="fa fa-gamepad paddingR10"></span>Games</a></li>
                     <li><a href="~/TV"><span class="fa fa-video-camera paddingR10"></span>TV</a></li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
