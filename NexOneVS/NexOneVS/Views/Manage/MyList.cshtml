@@ -16,13 +16,13 @@
     }
 </style>
 <div class="page-header">
-    <h2 class="text-info">My list </h2>
+    <h2 class="text-success">My list </h2>
 </div>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
-            <a href=@Url.Action("Index", "Movies") class="btn btn-info">
+            <a href=@Url.Action("Index", "Movies") class="btn btn-primary">
                 <i class="fa fa-plus-circle paddingR10"></i>Add movie
             </a>
             <br /><br /><br />
@@ -52,10 +52,9 @@
                             </td>
                             <td>
                                 @item.ItemName
-                                @if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60)
+                                @if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 10)
                                 {
                                     <label class="text-success paddingL5"><i>new</i></label>
-
                                 }
                             </td>
                             <td>
@@ -73,7 +72,7 @@
                                     @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Hours.ToString());
                                     <label>hrs</label>
                                 }
-                                else if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60 && DateTime.Now.Subtract(item.CreatedDate).Minutes > 0)
+                                else if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60 && DateTime.Now.Subtract(item.CreatedDate).Minutes >= 0)
                                 {
                                     @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Minutes.ToString());
                                     <label>mins</label>
