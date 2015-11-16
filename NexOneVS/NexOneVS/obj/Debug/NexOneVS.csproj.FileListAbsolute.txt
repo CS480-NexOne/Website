@@ -345,3 +345,5 @@ C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\Microsoft.Ow
 C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\obj\Debug\NexOneVS.csprojResolveAssemblyReference.cache
 C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\obj\Debug\NexOneVS.dll
 C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\obj\Debug\NexOneVS.pdb
+D:\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.dll
+D:\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.xml
