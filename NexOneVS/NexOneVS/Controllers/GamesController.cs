@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NexOneVS.Models.GameDB;
+using NexOneVS.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,15 +20,15 @@ namespace NexOneVS.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            Game mygames = getNew();
+            GameDB mygames = getNew();
             //GameDB.Rootobject myGames = getNew();
 
             return View(mygames);
         }
 
-        public Game getNew()
+        public GameDB getNew()
         {
-            string url = "http://www.giantbomb.com/api/search/?api_key=5195eec3fb1e59945f162c69ea935220a616fd95&format=json&query=%22fallout%22&resources=game";
+            string url = "http://www.giantbomb.com/api/search/?api_key=5195eec3fb1e59945f162c69ea935220a616fd95&resources=game&format=json&query=%22fallout%22";
 
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
             HttpWebResponse response;
@@ -43,9 +43,9 @@ namespace NexOneVS.Controllers
                     String json = reader.ReadToEnd();
                     JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
 
-                    Game gdb = new Game();
+                    GameDB gdb = new GameDB();
 
-                    gdb = JsonConvert.DeserializeObject<Game>(json);
+                    gdb = JsonConvert.DeserializeObject<GameDB>(json);
 
                     return gdb;
                 }

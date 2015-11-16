@@ -347,3 +347,5 @@ C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\obj\Debug\NexOne
 C:\Users\Ara Malayan\Documents\GitHub\Website\NexOneVS\NexOneVS\obj\Debug\NexOneVS.pdb
 D:\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.dll
 D:\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.xml
+D:\Users\K9\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.dll
+D:\Users\K9\Documents\GitHub\Website\NexOneVS\NexOneVS\bin\MathNet.Numerics.xml

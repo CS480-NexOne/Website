@@ -1,8 +1,32 @@
-﻿@model NexOneVS.Models.GameDB.Game
+﻿@using NexOneVS.Models
+@model NexOneVS.Models.GameDB
+
 @{
     ViewBag.Title = "Index";
 }
 
-@Html.Raw(@Model.results[1].description)
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tbody>
+            @foreach (GameDB.Result result in Model.results)
+            {
+                <tr>
+                    @if (@result.image != null)
+                    {
+                        <text>
+                        <td><img src=@result.image.icon_url /></td>
+                        </text>
+                    }
+                   
+                    <td>@result.name</td>
+                    <td>@result.original_release_date</td>
+</tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
 
 

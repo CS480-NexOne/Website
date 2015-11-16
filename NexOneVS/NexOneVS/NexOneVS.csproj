@@ -188,7 +188,6 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>QueueDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameDB\Game.cs" />
     <Compile Include="Models\GameDB\GameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
