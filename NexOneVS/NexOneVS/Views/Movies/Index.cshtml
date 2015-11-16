@@ -14,7 +14,7 @@
             <div class="col-lg-8 col-lg-offset-2">
 
 
-                @using (Html.BeginForm("Search", "Movies"))
+                @using (Html.BeginForm("Search", "Movies", FormMethod.Get))
                 {
                     <div class="input-group">
                         <input type="text" class="form-control" name="query" placeholder="Search for movies...">
