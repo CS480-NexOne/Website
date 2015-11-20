@@ -19,6 +19,7 @@ namespace NexOneVS.Controllers
         //private string apikey = System.Configuration.ConfigurationManager.AppSettings["MovieDB_API_Key"].ToString();
         private string apikey = "becd4a5c2dc9c687bd6727ff81c7ad2e";
         private QueueContext db = new QueueContext();
+        MovieDB mdb = MovieDB.Instance;
         // GET: Movies
         public ActionResult Index()
         {
@@ -156,7 +157,6 @@ namespace NexOneVS.Controllers
         {
             string url = string.Format("http://api.themoviedb.org/3/movie/now_playing?&api_key={0}", apikey);
 
-            MovieDB mdb = new MovieDB();
             mdb = JsonConvert.DeserializeObject<MovieDB>(ApiCall.ApiGET(url));
             return mdb;
         }

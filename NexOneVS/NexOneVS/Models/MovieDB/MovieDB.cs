@@ -5,9 +5,17 @@ using System.Web;
 
 namespace NexOneVS.Models.Movie
 {
-    public class MovieDB
+    public sealed class MovieDB
     {
-
+        private static readonly MovieDB instance = new MovieDB();
+        private MovieDB() { }
+        public static MovieDB Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public int page { get; set; }
         public Result[] results { get; set; }
         public int total_pages { get; set; }
