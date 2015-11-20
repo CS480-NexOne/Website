@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NexOneVS.Models;
+using NexOneVS.Models.Game;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,6 +9,8 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using NexOneVS.GameModels;
+using NexOneVS.Models.Game;
 
 namespace NexOneVS.Controllers
 {
@@ -20,13 +22,14 @@ namespace NexOneVS.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            GameDB mygames = getNew();
-            //GameDB.Rootobject myGames = getNew();
+            GameModel gameModel = new GameModel();
 
-            return View(mygames);
+            gameModel.SearchDB = getNew();
+
+            return View(gameModel);
         }
 
-        public GameDB getNew()
+        public SearchGameDB getNew()
         {
             string url = "http://www.giantbomb.com/api/search/?api_key=5195eec3fb1e59945f162c69ea935220a616fd95&resources=game&format=json&query=%22fallout%22";
 
@@ -43,9 +46,9 @@ namespace NexOneVS.Controllers
                     String json = reader.ReadToEnd();
                     JObject jobj = (JObject)JsonConvert.DeserializeObject(json);
 
-                    GameDB gdb = new GameDB();
+                    SearchGameDB gdb = new SearchGameDB();
 
-                    gdb = JsonConvert.DeserializeObject<GameDB>(json);
+                    gdb = JsonConvert.DeserializeObject<SearchGameDB>(json);
 
                     return gdb;
                 }

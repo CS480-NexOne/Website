@@ -1,5 +1,6 @@
-﻿@using NexOneVS.Models
-@model NexOneVS.Models.GameDB
+﻿@using NexOneVS.Models.Game
+@using NexOneVS.GameModels
+@model GameModel
 
 @{
     ViewBag.Title = "Index";
@@ -8,7 +9,7 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <tbody>
-            @foreach (GameDB.Result result in Model.results)
+            @foreach (SearchGameDB.Result result in Model.SearchDB.results)
             {
                 <tr>
                     @if (@result.image != null)

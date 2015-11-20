@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NexOneVS.Models
+namespace NexOneVS.Models.Game
 {
-    public class GameDB
+    public class SearchGameDB
     {
         public string error { get; set; }
         public int limit { get; set; }

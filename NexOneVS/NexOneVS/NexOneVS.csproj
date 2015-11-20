@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\QueuesController.cs" />
+    <Compile Include="GameModels\GameModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,7 +189,7 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>QueueDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GameDB\GameDB.cs" />
+    <Compile Include="Models\SearchGameDB\SearchGameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
