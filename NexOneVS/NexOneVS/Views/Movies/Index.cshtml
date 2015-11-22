@@ -2,7 +2,9 @@
 @using NexOneVS.ViewModels
 @model ViewModel
 
-
+@{
+    ViewBag.Title = "Movies";
+}
 
 <div class="page-header">
     <h1 class="text-info">Now playing</h1>
@@ -52,75 +54,3 @@
         }
     </div>
 </div>
-
-
-
-@*<div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8 col-md-8 col-sm-10">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Genres</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="container-fluid">
-                            <div class="row">
-
-                                @foreach (Genre genre in Model.Genres.genres)
-                                {
-                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="@genre.id">
-                                                @if (genre.name == "Science Fiction")
-                                                {
-                                                    @Html.Raw("Sci-fi")
-                                                }
-                                                else
-                                                {
-                                                    @genre.name
-                                                }
-
-
-                                            </label>
-                                        </div>
-                                    </div>
-                                }
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-@*<div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <td></td>
-                    <td>Title</td>
-                    <td>Genre</td>
-                    <td>Release Date</td>
-                    <td>Popularity</td>
-                    <td>Links</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (MovieDB.Result result in Model.Movies.results)
-                {
-                    <tr>
-                        <td><img src="http://image.tmdb.org/t/p/w92/@result.poster_path" alt="" /></td>
-                        <td>@result.original_title</td>
-                        <td>Sample Genre</td>
-                        <td>@result.release_date</td>
-                        <td>@result.popularity</td>
-                        <td>Fandango Link Icon</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>*@
-
-

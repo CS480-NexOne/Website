@@ -179,6 +179,7 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TVController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\QueuesController.cs" />
     <Compile Include="GameModels\GameModel.cs" />
@@ -333,6 +334,10 @@
     <Content Include="Views\Queues\Index.cshtml" />
     <Content Include="Views\Manage\MyList.cshtml" />
     <Content Include="Views\Movies\Search.cshtml" />
+    <Content Include="Views\TV\Title.cshtml" />
+    <Content Include="Views\TV\_ViewStart.cshtml" />
+    <Content Include="Views\TV\Index.cshtml" />
+    <Content Include="Views\TV\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

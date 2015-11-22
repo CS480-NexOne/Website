@@ -3,6 +3,10 @@
 @using NexOneVS.ViewModels
 @model ViewModel
 
+@{
+    ViewBag.Title = @Model.Title.original_title + " (" + @Model.Title.release_date.Substring(0, 4) + ")";
+}
+
 <div class="container">
 
     <!-- Portfolio Item Heading -->
@@ -21,7 +25,7 @@
     <div class="row">
 
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <img src="http://image.tmdb.org/t/p/w500/@Model.Title.poster_path" alt="@Model.Title.original_title" class="img-responsive" />
+            <img src="https://image.tmdb.org/t/p/w500/@Model.Title.poster_path" alt="@Model.Title.original_title" class="img-responsive" />
 
         </div>
 
@@ -88,7 +92,7 @@
                         <div class="media-left">
                             @if (!crew.profile_path.IsEmpty())
                             {
-                                <a href="http://image.tmdb.org/t/p/w45/@crew.profile_path">
+                                <a href="https://image.tmdb.org/t/p/w45/@crew.profile_path">
                                     <img class="media-object" src="http://image.tmdb.org/t/p/w45/@crew.profile_path" alt="...">
                                 </a>
                             }
@@ -124,8 +128,8 @@
                         <div class="media-left">
                             @if (!cast.profile_path.IsEmpty())
                             {
-                                <a href="http://image.tmdb.org/t/p/original/@cast.profile_path">
-                                    <img class="media-object" src="http://image.tmdb.org/t/p/w45/@cast.profile_path" alt="...">
+                                <a href="https://image.tmdb.org/t/p/original/@cast.profile_path">
+                                    <img class="media-object" src="https://image.tmdb.org/t/p/w45/@cast.profile_path" alt="...">
                                 </a>
                             }
                             else
@@ -185,8 +189,8 @@
             {
                 <div class="paddingR10">
                     <div class="thumbnail">
-                        <a href="http://image.tmdb.org/t/p/original/@bd.file_path">
-                            <img class="media-object lazyOwl" data-src="http://image.tmdb.org/t/p/w500/@bd.file_path" src="http://image.tmdb.org/t/p/w500/@bd.file_path" alt="...">
+                        <a href="https://image.tmdb.org/t/p/original/@bd.file_path">
+                            <img class="media-object lazyOwl" data-src="https://image.tmdb.org/t/p/w500/@bd.file_path" src="https://image.tmdb.org/t/p/w500/@bd.file_path" alt="...">
                         </a>
                     </div>
                 </div>
@@ -209,7 +213,7 @@
                 <div class="paddingR10">
 
                     <a href="@Url.Action("Title", "Movies", new { id = other.id })" class="thumbnail">
-                        <img class="media-object lazyOwl" data-src="http://image.tmdb.org/t/p/w300/@other.poster_path" src="http://image.tmdb.org/t/p/w300/@other.poster_path" alt="...">
+                        <img class="media-object lazyOwl" data-src="https://image.tmdb.org/t/p/w300/@other.poster_path" src="https://image.tmdb.org/t/p/w300/@other.poster_path" alt="...">
                     </a>
                 </div>
             }
