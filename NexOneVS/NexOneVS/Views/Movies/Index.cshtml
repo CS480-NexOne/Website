@@ -37,7 +37,7 @@
 
         @foreach (MovieDB.Result result in Model.Movies.results)
         {
-            if (!result.poster_path.IsEmpty())
+            if (!result.poster_path.IsEmpty() && result.adult == false)
             {
                 <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
                     <a href="@Url.Action("Title", "Movies", new { id = result.id })" class="thumbnail">
