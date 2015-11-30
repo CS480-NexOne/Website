@@ -18,7 +18,9 @@
 
 /* Set width on the form input elements since they're 100% wide by default */
 
-
+.paddingR5 {
+    padding-right:5px;
+}
 .paddingR10 {
     padding-right:10px;
 }

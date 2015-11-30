@@ -43,70 +43,93 @@
                 </thead>
                 @foreach (var item in @Model.Queue)
                 {
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="/Movies/Title/@item.IDforAPI">
-                                    <img src="http://image.tmdb.org/t/p/w92/@item.ImagePath" alt="@item.ImagePath" class="img-responsive" />
-                                </a>
-                            </td>
-                            <td>
-                                @item.ItemName
-                                @if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 10)
-                                {
-                                    <label class="text-success paddingL5"><i>new</i></label>
-                                }
-                            </td>
-                            <td>
-                                @*<span class="label label-danger">@item.Type.ToLower()</span>*@
-                                <label class="text-info"><i class="fa fa-film" data-toggle="tooltip" data-placement="top" title="Movie"></i></label>
-                            </td>
-                            <td style="text-align:center">
-                                @if (DateTime.Now.Subtract(item.CreatedDate).Days < 31 && DateTime.Now.Subtract(item.CreatedDate).Days > 0)
-                                {
-                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Days.ToString());
-                                    <label>days</label>
-                                }
-                                else if (DateTime.Now.Subtract(item.CreatedDate).Hours < 24 && DateTime.Now.Subtract(item.CreatedDate).Hours > 0)
-                                {
-                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Hours.ToString());
-                                    <label>hrs</label>
-                                }
-                                else if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60 && DateTime.Now.Subtract(item.CreatedDate).Minutes >= 0)
-                                {
-                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Minutes.ToString());
-                                    <label>mins</label>
-                                }
-                                else
-                                {
-                                    @Html.Raw(item.CreatedDate.ToString("MMM dd, yyyy"));
-                                }
-                            </td>
+                    if (item.Watched == false)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="/Movies/Title/@item.IDforAPI">
+                                        <img src="http://image.tmdb.org/t/p/w92/@item.ImagePath" alt="@item.ImagePath" class="img-responsive" />
+                                    </a>
+                                </td>
+                                <td>
+                                    @item.ItemName
+                                    @if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 10)
+                                    {
+                                        <label class="text-success paddingL5"><i>new</i></label>
+                                    }
+                                </td>
+                                <td>
+                                    @*<span class="label label-danger">@item.Type.ToLower()</span>*@
+                                    <label class="text-info"><i class="fa fa-film" data-toggle="tooltip" data-placement="top" title="Movie"></i></label>
+                                </td>
+                                <td style="text-align:center">
+                                    @if (DateTime.Now.Subtract(item.CreatedDate).Days < 31 && DateTime.Now.Subtract(item.CreatedDate).Days > 0)
+                                    {
+                                        @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Days.ToString());
+                                        <label>days</label>
+                                    }
+                                    else if (DateTime.Now.Subtract(item.CreatedDate).Hours < 24 && DateTime.Now.Subtract(item.CreatedDate).Hours > 0)
+                                    {
+                                        @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Hours.ToString());
+                                        <label>hrs</label>
+                                    }
+                                    else if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60 && DateTime.Now.Subtract(item.CreatedDate).Minutes >= 0)
+                                    {
+                                        @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Minutes.ToString());
+                                        <label>mins</label>
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(item.CreatedDate.ToString("MMM dd, yyyy"));
+                                    }
+                                </td>
 
-                            <td style="text-align:right">
-                                @using (Html.BeginForm("Watched", "Manage", new { id = item.ID }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-success">
-                                        <span class="">Watched</span>
-                                    </button>
-                                }
-                                @using (Html.BeginForm("Delete", "Manage", new { id = item.ID }))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to remove @item.ItemName?');">
-                                        <span class="">Remove</span>
-                                    </button>
-                                }
+                                <td style="text-align:right">
+                                    @using (Html.BeginForm("Watched", "Manage", new { id = item.ID }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-success">
+                                            <span class="">Watched</span>
+                                        </button>
+                                    }
+                                    @using (Html.BeginForm("Delete", "Manage", new { id = item.ID }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to remove @item.ItemName?');">
+                                            <span class="">Remove</span>
+                                        </button>
+                                    }
 
-                            </td>
+                                </td>
 
-                            <td></td>
-                        </tr>
-                    </tbody>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    }
                 }
 
             </table>
+        </div>
+        <div class="col-lg-3">
+            <br /><br /><br /><br />
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center" style="color:black">Watched</h3>
+                </div>
+                <ul class="list-group">
+                    @foreach (var item in @Model.Queue)
+                    {
+                        if (item.Watched == true)
+                        {
+                            <li class="list-group-item">
+                                <i class="fa fa-film text-info paddingR10"></i><a href="/Movies/Title/@item.IDforAPI">@item.ItemName</a>
+                            </li>
+                        }
+
+                    }
+                </ul>
+            </div>
         </div>
     </div>
 </div>

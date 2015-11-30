@@ -37,9 +37,9 @@ namespace NexOneVS.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -340,37 +340,75 @@ namespace NexOneVS.Controllers
         {
             ListViewModel mymodel = new ListViewModel();
 
-            using(var db = new QueueContext())
+            using (var db = new QueueContext())
             {
                 string id = User.Identity.GetUserId();
 
                 var query = (from tblQueue in db.Queues
                              orderby tblQueue.CreatedDate descending
-                             where (tblQueue.UserID == id && tblQueue.Watched == false)
+                             where (tblQueue.UserID == id)
                              select tblQueue);
                 mymodel.Queue = query.ToList();
 
                 return View(mymodel);
             }
-            
+
+        }
+
+        public ActionResult All()
+        {
+            ListViewModel mymodel = new ListViewModel();
+
+            using (var db = new QueueContext())
+            {
+                string id = User.Identity.GetUserId();
+
+                var query = (from tblQueue in db.Queues
+                             orderby tblQueue.CreatedDate descending
+                             where (tblQueue.UserID == id)
+                             select tblQueue);
+                mymodel.Queue = query.ToList();
+
+                return View(mymodel);
+            }
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            using(var db = new QueueContext())
+            using (var db = new QueueContext())
             {
                 Queue queue = db.Queues.Find(id);
                 db.Queues.Remove(queue);
                 db.SaveChanges();
                 return RedirectToAction("MyList");
             }
-            
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Watched(int id)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", new { returnUrl = "/Movies/Title/" + id.ToString() });
+
+            }
+            using (var db = new QueueContext())
+            {
+                Queue original = db.Queues.Find(id);
+                original.Watched = true;
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("MyList", "Manage");
         }
 
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -421,6 +459,6 @@ namespace NexOneVS.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

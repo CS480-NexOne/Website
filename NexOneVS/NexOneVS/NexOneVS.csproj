@@ -340,9 +340,13 @@
     <Content Include="Views\TV\_ViewStart.cshtml" />
     <Content Include="Views\TV\Index.cshtml" />
     <Content Include="Views\TV\Search.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Games\Title.cshtml" />
     <Content Include="Views\Games\Search.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
+=======
+    <Content Include="Views\Manage\All.cshtml" />
+>>>>>>> 52bd03eda448072abad3fe0c6c319a787d75524d
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

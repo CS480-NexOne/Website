@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMovie.cshtml";
+}
+@model NexOneVS.ViewModels.ListViewModel
+
+@{
+    ViewBag.Title = "View all";
+}
+<style>
+    form {
+        display: inline-block;
+    }
+
+    .table tbody tr td {
+        vertical-align: middle;
+    }
+</style>
+<div class="page-header">
+    <h2 class="text-success">View all</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9">
+            
+            <table class="table table-hover topOffset20">
+               
+                @foreach (var item in @Model.Queue)
+                {
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="/Movies/Title/@item.IDforAPI">
+                                    <img src="http://image.tmdb.org/t/p/w92/@item.ImagePath" alt="@item.ImagePath" class="img-responsive" />
+                                </a>
+                            </td>
+                            <td>
+                                @item.ItemName
+                                @if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 10)
+                                {
+                                    <label class="text-success paddingL5"><i>new</i></label>
+                                }
+                            </td>
+                            <td style="text-align:center">
+                                @if (DateTime.Now.Subtract(item.CreatedDate).Days < 31 && DateTime.Now.Subtract(item.CreatedDate).Days > 0)
+                                {
+                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Days.ToString());
+                                    <label>days</label>
+                                }
+                                else if (DateTime.Now.Subtract(item.CreatedDate).Hours < 24 && DateTime.Now.Subtract(item.CreatedDate).Hours > 0)
+                                {
+                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Hours.ToString());
+                                    <label>hrs</label>
+                                }
+                                else if (DateTime.Now.Subtract(item.CreatedDate).Minutes < 60 && DateTime.Now.Subtract(item.CreatedDate).Minutes >= 0)
+                                {
+                                    @Html.Raw(DateTime.Now.Subtract(item.CreatedDate).Minutes.ToString());
+                                    <label>mins</label>
+                                }
+                                else
+                                {
+                                    @Html.Raw(item.CreatedDate.ToString("MMM dd, yyyy"));
+                                }
+                            </td>
+
+                            <td style="text-align:right">
+                                @using (Html.BeginForm("Delete", "Manage", new { id = item.ID }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to remove @item.ItemName?');">
+                                        <span class="">Remove</span>
+                                    </button>
+                                }
+
+                            </td>
+
+                            <td></td>
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
