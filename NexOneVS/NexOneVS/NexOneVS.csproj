@@ -193,7 +193,6 @@
     <Compile Include="Models\GameDB\SimilarGame.cs" />
     <Compile Include="Models\GameDB\Video.cs" />
     <Compile Include="Models\GameDB\GameDetail.cs" />
-    <Compile Include="Models\GameDB\SearchGameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -222,6 +221,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QueueDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\SearchGameDB\SearchGameDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\ApiCall.cs" />
@@ -340,13 +340,10 @@
     <Content Include="Views\TV\_ViewStart.cshtml" />
     <Content Include="Views\TV\Index.cshtml" />
     <Content Include="Views\TV\Search.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Games\Title.cshtml" />
     <Content Include="Views\Games\Search.cshtml" />
     <Content Include="Views\Games\Index.cshtml" />
-=======
     <Content Include="Views\Manage\All.cshtml" />
->>>>>>> 52bd03eda448072abad3fe0c6c319a787d75524d
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
