@@ -1,0 +1,201 @@
+﻿@using System.Globalization
+@using NexOneVS.Models.Game
+@using NexOneVS.GameModels
+@model GameModel
+
+@{
+    ViewBag.Title = @Model.gd.results.name + " (" + @Model.gd.results.original_release_date.Substring(0, 4) + ")";
+}
+
+
+<div class="container">
+    
+    <!-- Portfolio Item Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                <a href=@Model.gd.results.site_detail_url target="_blank">
+                    @Model.gd.results.name
+                </a>
+                <small>(@Model.gd.results.original_release_date.Substring(0,4))</small>
+            </h1>
+        </div>
+    </div>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+        <!-- Poster -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <img src=@Model.gd.results.image.super_url alt=@Model.gd.results.name class="img-responsive" />
+
+        </div>
+
+        <!-- Overview -->
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <h3>
+                Overview
+            </h3>
+            <p>
+                @Model.gd.results.deck
+            </p>
+
+            <h3>Genres</h3>
+            <p>
+                @if (Model.gd.results.genres != null)
+                {
+                    foreach (GameDetail.Genre genre in Model.gd.results.genres)
+                    {
+                        <label class="label label-default" style="padding:5px; font-size:15px">@genre.name</label>
+                    }
+                }
+                <br /><br />
+            </p>
+
+            <!-- Theme -->
+            <h3>Theme</h3>
+            <p>
+                @if (Model.gd.results.themes != null)
+                {
+                    foreach (GameDetail.Theme theme in Model.gd.results.themes)
+                    {
+                        <label class="label label-default" style="padding:5px; font-size:15px">@theme.name</label>
+                    }
+                }
+                <br /><br />
+            </p>
+
+            <!-- Game Rating -->
+            <h3>Game Rating</h3>
+            <p>
+                @if (Model.gd.results.original_game_rating != null)
+                {
+                    foreach (GameDetail.Original_Game_Rating rating in Model.gd.results.original_game_rating)
+                    {
+                        <label class="label label-default" style="padding:5px; font-size:15px">@rating.name</label>
+                    }
+                }
+                <br /><br />
+            </p>
+
+            <!-- Platform -->
+            <h3>Platform</h3>
+            <p>
+                @if (Model.gd.results.platforms != null)
+                {
+                    foreach (GameDetail.Platform platform in Model.gd.results.platforms)
+                    {
+                        <label class="label label-default" style="padding:5px; font-size:15px">@platform.name</label>
+                    }
+                }
+                <br /><br />
+            </p>
+
+            <!-- Functions -->
+            @using (Html.BeginForm("AddToList", "Games", new { id = Model.gd.results.id, name = Model.gd.results.name, image = @Model.gd.results.image.thumb_url }))
+            {
+                <p>
+                    <br />
+
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus paddingR10"></i> Add to my list
+                    </button>
+                    <a href="/Games" class="btn btn-default"><i class="fa fa-undo" style="padding-right:10px"></i>Return to games</a>
+                </p>
+            }
+        </div>
+    </div>
+    <!-- Row End -->
+
+    <!-- Videos -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Video</h3>
+        </div>
+        <div id="owl-example2" class="owl-carousel">
+            @if (Model.Videos.Count > 0)
+            {
+                foreach (Video video in Model.Videos)
+                {
+                    if (video.results.youtube_id != null)
+                    {
+                        <div class="paddingR10">
+                            <div class="thumbnail">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/@video.results.youtube_id?rel=0" allowfullscreen></iframe>
+                                </div>
+                                <div class="caption text-center">
+                                    <h4>@video.results.video_type</h4>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+    <!-- Photos -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Photos</h3>
+        </div>
+
+        <div id="owl-example3" class="owl-carousel">
+                @foreach (GameDetail.Image1 image in Model.gd.results.images)
+                {
+                    <div class="paddingR10">
+                        <div class="thumbnail">
+                            <a href="@image.thumb_url">
+                                <img class="media-object lazyOwl" data-src="@image.super_url" src="@image.super_url" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                }
+        </div>
+    </div>
+
+    <!-- Similar Games -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">Similar Games</h3>
+        </div>
+
+        <div id="owl-example4" class="owl-carousel">
+            @if (Model.sg.Count > 0)
+            {
+                foreach (SimilarGame sg in Model.sg)
+                {
+                    if(sg.results.image != null)
+                    {
+                        <div class="paddingR10">
+                        <a href="@Url.Action("Title", "Games", new { id = sg.results.id })" class="thumbnail">
+                            <img class="media-object lazyOwl" data-src="@sg.results.image.thumb_url" src="@sg.results.image.thumb_url" alt="...">
+                        </a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#owl-example").owlCarousel();
+            $("#owl-example2").owlCarousel();
+            $("#owl-example3").owlCarousel({
+                lazyLoad: true
+            });
+            $("#owl-example4").owlCarousel({
+                navigation: true,
+                pagination: false,
+                items: 7
+            });
+        });
+    </script>
+}

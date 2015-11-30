@@ -6,25 +6,54 @@
     ViewBag.Title = "Games";
 }
 
-<div class="table-responsive">
-    <table class="table table-striped">
-        <tbody>
-            @foreach (SearchGameDB.Result result in Model.SearchDB.results)
+<!-- Search -->
+<div class="page-header">
+    <h1 class="text-info">New Games</h1>
+</div>
+
+<div class="well topOffset20">
+    <div class="container-fluid clearfix">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                @using (Html.BeginForm("Search", "Games", FormMethod.Get))
+                {
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" placeholder="Search for games...">
+                        <span class="input-group-btn paddingL5">
+                            <button class="btn btn-warning" type="submit">Search</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- New Games -->
+<div class="container-fluid topOffset20">
+    <div class="row">
+        @{ int i = 0; }
+
+        @foreach (SearchGameDB.Result result in Model.SearchDB.results)
+        {
+            if (@result.image != null)
             {
-                <tr>
-                    @if (@result.image != null)
-                    {
-                        <text>
-                        <td><img src=@result.image.icon_url /></td>
-                        </text>
-                    }
-                   
-                    <td>@result.name</td>
-                    <td>@result.original_release_date</td>
-</tr>
+                <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                    <a href="@Url.Action("Title", "Games", new { id = result.id })" class="thumbnail">
+                        @if (@result.image.icon_url != null)
+                        {
+                            <img src=@result.image.icon_url class="img-responsive" />
+                        }
+                    </a>
+                </div>
+                i++;
             }
-        </tbody>
-    </table>
+            if (i % 6 == 0)
+            {
+                <div class="clearfix visible-lg-block"></div>
+            }
+        }
+    </div>
 </div>
 
 

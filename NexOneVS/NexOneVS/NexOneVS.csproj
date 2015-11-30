@@ -190,7 +190,10 @@
     <Compile Include="Models\AspNetUser.cs">
       <DependentUpon>QueueDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SearchGameDB\SearchGameDB.cs" />
+    <Compile Include="Models\GameDB\SimilarGame.cs" />
+    <Compile Include="Models\GameDB\Video.cs" />
+    <Compile Include="Models\GameDB\GameDetail.cs" />
+    <Compile Include="Models\GameDB\SearchGameDB.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -326,7 +329,6 @@
     <Content Include="Views\Movies\Title.cshtml" />
     <Content Include="Views\Movies\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutMovie.cshtml" />
-    <Content Include="Views\Games\Index.cshtml" />
     <Content Include="Views\Queues\Create.cshtml" />
     <Content Include="Views\Queues\Delete.cshtml" />
     <Content Include="Views\Queues\Details.cshtml" />
@@ -338,6 +340,9 @@
     <Content Include="Views\TV\_ViewStart.cshtml" />
     <Content Include="Views\TV\Index.cshtml" />
     <Content Include="Views\TV\Search.cshtml" />
+    <Content Include="Views\Games\Title.cshtml" />
+    <Content Include="Views\Games\Search.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
