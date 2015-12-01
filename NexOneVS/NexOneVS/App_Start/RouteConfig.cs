@@ -30,7 +30,13 @@ namespace NexOneVS
                 url: "Games/Title/{id}",
                 defaults: new { controller = "Games", action = "Title", id = UrlParameter.Optional }
             );
-            
+
+            routes.MapRoute(
+                name: "TV",
+                url: "TV/Title/{id}",
+                defaults: new { controller = "TV", action = "Title", id = UrlParameter.Optional }
+            );
+
         }
     }
 }

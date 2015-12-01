@@ -1,6 +1,6 @@
-﻿@using NexOneVS.Models.Movie
+﻿@using NexOneVS.Models.TV
 @using NexOneVS.ViewModels
-@model ViewModel
+@model TVViewModel
 
 @{
     ViewBag.Title = "TV";
@@ -19,7 +19,7 @@
                 @using (Html.BeginForm("Search", "TV", FormMethod.Get))
                 {
                     <div class="input-group">
-                        <input type="text" class="form-control" name="query" placeholder="Search for movies...">
+                        <input type="text" class="form-control" name="query" placeholder="Search for TV shows...">
                         <span class="input-group-btn paddingL5">
                             <button class="btn btn-warning" type="submit">Search</button>
                         </span>
@@ -35,7 +35,7 @@
     <div class="row">
         @{ int i = 1; }
 
-        @foreach (MovieDB.Result result in Model.Movies.results)
+        @foreach (TVDB.Result result in Model.TV.results)
         {
             if (!result.poster_path.IsEmpty())
             {

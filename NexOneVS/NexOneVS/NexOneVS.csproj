@@ -193,6 +193,14 @@
     <Compile Include="Models\GameDB\SimilarGame.cs" />
     <Compile Include="Models\GameDB\Video.cs" />
     <Compile Include="Models\GameDB\GameDetail.cs" />
+    <Compile Include="Models\TVDB\Credit.cs" />
+    <Compile Include="Models\TVDB\Genre.cs" />
+    <Compile Include="Models\TVDB\Image.cs" />
+    <Compile Include="Models\TVDB\TVDB.cs" />
+    <Compile Include="Models\TVDB\Review.cs" />
+    <Compile Include="Models\TVDB\Similar.cs" />
+    <Compile Include="Models\TVDB\Title.cs" />
+    <Compile Include="Models\TVDB\Video.cs" />
     <Compile Include="Models\MovieDB\Credit.cs" />
     <Compile Include="Models\MovieDB\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -226,6 +234,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utility\ApiCall.cs" />
     <Compile Include="ViewModels\ListViewModel.cs" />
+    <Compile Include="ViewModels\TVSearchViewModel.cs" />
+    <Compile Include="ViewModels\TVViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
   </ItemGroup>
@@ -328,7 +338,6 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Movies\Title.cshtml" />
     <Content Include="Views\Movies\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_LayoutMovie.cshtml" />
     <Content Include="Views\Queues\Create.cshtml" />
     <Content Include="Views\Queues\Delete.cshtml" />
     <Content Include="Views\Queues\Details.cshtml" />
@@ -348,6 +357,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Account\" />
     <Folder Include="Views\Queue\" />
   </ItemGroup>
   <ItemGroup>
