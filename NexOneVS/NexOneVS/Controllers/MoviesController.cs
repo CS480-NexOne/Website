@@ -156,7 +156,7 @@ namespace NexOneVS.Controllers
 
         public MovieDB getNew()
         {
-            string url = string.Format("http://api.themoviedb.org/3/movie/now_playing?&api_key={0}", apikey);
+            string url = string.Format("http://api.themoviedb.org/3/movie/now_playing?language=en&api_key={0}", apikey);
 
             mdb = JsonConvert.DeserializeObject<MovieDB>(ApiCall.ApiGET(url));
             return mdb;
