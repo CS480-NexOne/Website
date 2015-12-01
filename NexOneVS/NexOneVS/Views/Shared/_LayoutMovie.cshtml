@@ -1,0 +1,91 @@
+﻿-<!DOCTYPE html>
+-
+<html>
+-
+<head>
+    -
+    <meta charset="utf-8" />
+    -
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    -
+    <title>@ViewBag.Title - Next On My List</title>
+    -
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    -
+    -    @Styles.Render("~/Content/Theme/css")
+    -    @Scripts.Render("~/bundles/modernizr")
+    -
+    -
+</head>
+-
+<body>
+    -    <div class="navbar navbar-default navbar-fixed-top">
+        -        <div class="container">
+            -            <div class="navbar-header">
+                -                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    -                    <span class="icon-bar"></span>
+                    -                    <span class="icon-bar"></span>
+                    -                    <span class="icon-bar"></span>
+                    -
+                </button>
+                -                <div class="navbar-brand">
+                    -                    <a class="navbar-brand" href="~/">
+                        -                        <img alt="Brand" src="~/Images/brand.png">
+                        -
+                    </a>
+                    -
+                </div>
+                -
+            </div>
+            -            <div class="navbar-collapse collapse">
+                -                <ul class="nav navbar-nav">
+                    -
+                    <li class="dropdown">
+                        -                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="paddingR10"><i class="fa fa-film paddingR10"></i>Movies</span><span class="caret"></span></a>
+                        -                        <ul class="dropdown-menu">
+                            -
+                            <li><a href="~/Movies"><i class="fa fa-play paddingR10 text-info"></i>Now playing</a></li>
+                            -
+                            <li><a href="~/Movies/Search"><i class="fa fa-search paddingR10 text-warning"></i>Search</a></li>
+                            -
+                            <li role="separator" class="divider"></li>
+                            -
+                            <li><a href="~/Manage/Mylist"><i class="fa fa-list-ul paddingR10 text-success"></i>My list</a></li>
+                            -
+                        </ul>
+                        -
+                    </li>
+                    -
+                    -
+                    <li><a href="~/Games"><span class="fa fa-gamepad paddingR10"></span>Games</a></li>
+                    -
+                    <li><a href="~/TV"><span class="fa fa-video-camera paddingR10"></span>TV</a></li>
+                    -
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    -
+                </ul>
+                -                @Html.Partial("_LoginPartial")
+                -
+            </div>
+            -
+        </div>
+        -
+    </div>
+    -    <div class="container body-content">
+        -        @RenderBody()
+        -        <hr />
+        -        <footer>
+            -            <p>&copy; @DateTime.Now.Year - Next On My List</p>
+            -
+        </footer>
+        -
+    </div>
+    -
+    -    @Scripts.Render("~/bundles/jquery")
+    -    @Scripts.Render("~/bundles/bootstrap")
+    -    @Scripts.Render("~/bundles/owl-carousel")
+    -    @RenderSection("scripts", required: false)
+    -
+</body>
+-
+</html>

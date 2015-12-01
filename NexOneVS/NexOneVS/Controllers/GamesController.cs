@@ -105,7 +105,7 @@ namespace NexOneVS.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Login", "Account", new { returnUrl = "/Movies/Title/" + id.ToString() });
+                return RedirectToAction("Login", "Account", new { returnUrl = "/Games/Title/" + id.ToString() });
 
             }
 
