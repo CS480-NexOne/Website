@@ -3,7 +3,9 @@
 @using NexOneVS.GameModels
 @model GameModel
 
-@{
+
+@if (ViewBag != null && Model != null && Model.gd != null && Model.gd.results != null && Model.gd.results.original_release_date != null)
+{
     ViewBag.Title = @Model.gd.results.name + " (" + @Model.gd.results.original_release_date.Substring(0, 4) + ")";
 }
 
@@ -91,10 +93,14 @@
             </p>
 
             <!-- Functions -->
-            @using (Html.BeginForm("AddToList", "Games", new { id = Model.gd.results.id, name = Model.gd.results.name, image = @Model.gd.results.image.thumb_url }))
+            @using (Html.BeginForm("AddToList", "Games", new { id = Model.gd.results.id, name = Model.gd.results.name, image = @Model.gd.results.image.thumb_url}))
             {
                 <p>
                     <br />
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus paddingR10"></i> Add to my list
+                    </button>
                     <a href="/Games" class="btn btn-default"><i class="fa fa-undo" style="padding-right:10px"></i>Return to games</a>
                 </p>
             }

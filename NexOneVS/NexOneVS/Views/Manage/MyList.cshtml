@@ -25,6 +25,12 @@
             <a href=@Url.Action("Index", "Movies") class="btn btn-primary">
                 <i class="fa fa-plus-circle paddingR10"></i>Add movie
             </a>
+            <a href=@Url.Action("Index", "Games") class="btn btn-primary">
+                <i class="fa fa-plus-circle paddingR10"></i>Add game
+            </a>
+            <a href=@Url.Action("Index", "TV") class="btn btn-primary">
+                <i class="fa fa-plus-circle paddingR10"></i>Add t.v. show
+            </a>
             <br /><br /><br />
             <table class="table table-hover topOffset20">
                 <thead>
@@ -49,7 +55,14 @@
                             <tr>
                                 <td>
                                     <a href="/Movies/Title/@item.IDforAPI">
-                                        <img src="http://image.tmdb.org/t/p/w92/@item.ImagePath" alt="@item.ImagePath" class="img-responsive" />
+                                        @if (!item.ImagePath.StartsWith("htt"))
+                                        {
+                                            <img src="http://image.tmdb.org/t/p/w92/@item.ImagePath" alt="@item.ImagePath" class="img-responsive" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@item.ImagePath" class="img-responsive" />
+                                        }
                                     </a>
                                 </td>
                                 <td>
@@ -61,7 +74,18 @@
                                 </td>
                                 <td>
                                     @*<span class="label label-danger">@item.Type.ToLower()</span>*@
-                                    <label class="text-info"><i class="fa fa-film" data-toggle="tooltip" data-placement="top" title="Movie"></i></label>
+                                    @if (item.Type == "Movie")
+                                    {
+                                        <label class="text-info"><i class="fa fa-film" data-toggle="tooltip" data-placement="top" title="Movie"></i></label>
+                                    }
+                                    else if (item.Type == "Game")
+                                    {
+                                        <label class="text-info"><i class="fa fa-gamepad" data-toggle="tooltip" data-placement="top" title="Game"></i></label>
+                                    }
+                                    else
+                                    {
+                                        <label class="text-info"><i class="fa fa-tv" data-toggle="tooltip" data-placement="top" title="TV"></i></label>
+                                    }
                                 </td>
                                 <td style="text-align:center">
                                     @if (DateTime.Now.Subtract(item.CreatedDate).Days < 31 && DateTime.Now.Subtract(item.CreatedDate).Days > 0)
@@ -90,7 +114,14 @@
                                     {
                                         @Html.AntiForgeryToken()
                                         <button type="submit" class="btn btn-success">
-                                            <span class="">Watched</span>
+                                            @if (item.Type == "Game")
+                                            {
+                                                <span class="">Played</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="">Watched</span>
+                                            }
                                         </button>
                                     }
                                     @using (Html.BeginForm("Delete", "Manage", new { id = item.ID }))
@@ -123,7 +154,18 @@
                         if (item.Watched == true)
                         {
                             <li class="list-group-item">
-                                <i class="fa fa-film text-info paddingR10"></i><a href="/Movies/Title/@item.IDforAPI">@item.ItemName</a>
+                                @if (item.Type == "Movie")
+                                {
+                                    <i class="fa fa-film text-info paddingR10"></i><a href="/Movies/Title/@item.IDforAPI">@item.ItemName</a>
+                                }
+                                else if (item.Type == "Game")
+                                {
+                                    <i class="fa fa-gamepad text-info paddingR10"></i><a href="/Games/Title/@item.IDforAPI">@item.ItemName</a>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-tv text-info paddingR10"></i><a href="/TV/Title/@item.IDforAPI">@item.ItemName</a>
+                                }
                             </li>
                         }
 

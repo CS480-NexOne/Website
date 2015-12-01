@@ -11,14 +11,16 @@ using System.Web;
 using System.Web.Mvc;
 using NexOneVS.GameModels;
 using NexOneVS.Utility;
+using NexOneVS.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NexOneVS.Controllers
 {
     public class GamesController : Controller
     {
         private string apikey = "5195eec3fb1e59945f162c69ea935220a616fd95";
+        private QueueContext db = new QueueContext();
 
-        
         // GET: Movies
         public ActionResult Index()
         {
@@ -95,6 +97,36 @@ namespace NexOneVS.Controllers
             GameDetail temp = new GameDetail();
             temp = JsonConvert.DeserializeObject<GameDetail>(ApiCall.ApiGET(url));
             return temp;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddToList(int id, string name, string image)
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account", new { returnUrl = "/Movies/Title/" + id.ToString() });
+
+            }
+
+            Queue item = new Queue()
+            {
+                IDforAPI = id.ToString(),
+                Type = "Game",
+                CreatedDate = DateTime.Now,
+                UserID = User.Identity.GetUserId(),
+                ImagePath = image,
+                ItemName = name,
+                Watched = false
+            };
+
+
+            db.Queues.Add(item);
+            db.SaveChanges();
+            //return RedirectToAction("Index");
+
+            //ViewBag.UserID = new SelectList(db.AspNetUsers, "Id", "Email", queue.UserID);
+            return RedirectToAction("MyList", "Manage");
         }
     }
 }

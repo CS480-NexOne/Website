@@ -1,5 +1,4 @@
-﻿using NexOneVS.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +8,7 @@ namespace NexOneVS.GameModels
 {
     public class GameModel
     {
+        public string Title;
         public SearchGameDB SearchDB { get; set; }
         public GameDetail gd { get; set; }
 
