@@ -44,9 +44,16 @@ namespace NexOneVS.Controllers
                     gameModel.Videos = new List<Video>();
                     foreach(GameDetail.Video video in gameModel.gd.results.videos)
                     {
-                        string url = string.Format("http://www.giantbomb.com/api/video/2300-{0}/?api_key={1}&format=json", video.id, apikey);
+                        try
+                        {
+                            string url = string.Format("http://www.giantbomb.com/api/video/2300-{0}/?api_key={1}&format=json", video.id, apikey);
+                            Video temp = JsonConvert.DeserializeObject<Video>(ApiCall.ApiGET(url));
+                            gameModel.Videos.Add(temp);
+                        }
+                        catch(Exception ex)
+                        {
 
-                        gameModel.Videos.Add((Video)JsonConvert.DeserializeObject<Video>(ApiCall.ApiGET(url)));
+                        }
                     }
                 }
 
@@ -55,8 +62,16 @@ namespace NexOneVS.Controllers
                     gameModel.sg = new List<SimilarGame>();
                     foreach (GameDetail.Similar_Games sg in gameModel.gd.results.similar_games)
                     {
-                        string url = string.Format("http://www.giantbomb.com/api/game/3030-{0}/?api_key={1}&format=json&field_list=image,id", sg.id, apikey);
-                        gameModel.sg.Add((SimilarGame)JsonConvert.DeserializeObject<SimilarGame>(ApiCall.ApiGET(url)));
+                        try
+                        {
+                            string url = string.Format("http://www.giantbomb.com/api/game/3030-{0}/?api_key={1}&format=json&field_list=image,id", sg.id, apikey);
+                            SimilarGame temp = JsonConvert.DeserializeObject<SimilarGame>(ApiCall.ApiGET(url));
+                            gameModel.sg.Add(temp);                            
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
                     }
                 }
 
