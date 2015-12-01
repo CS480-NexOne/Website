@@ -44,7 +44,7 @@ namespace NexOneVS.Controllers
                 mymodel.Review = getReview(movieID);
                 return View(mymodel);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return View();
             }
