@@ -31,10 +31,9 @@ namespace NexOneVS.Controllers
 
         public ActionResult Title()
         {
-            string gameID;
             try
             {
-                gameID = Url.RequestContext.RouteData.Values["id"].ToString();
+                string gameID = Url.RequestContext.RouteData.Values["id"].ToString();
                 GameModel gameModel = new GameModel();
                 gameModel.gd = getDetail(gameID);
                 // Getting Video Links
@@ -61,9 +60,10 @@ namespace NexOneVS.Controllers
 
                 return View(gameModel);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 GameModel gameModel = new GameModel();
+                gameModel.gd = new GameDetail();
                 return View(gameModel);
             }
         }
@@ -90,7 +90,7 @@ namespace NexOneVS.Controllers
 
         public GameDetail getDetail(string id)
         {
-            string url = string.Format("http://www.giantbomb.com/api/game/3030-{0}/?api_key={1}&format=json", id, apikey);
+            string url = string.Format("http://www.giantbomb.com/api/game/3030-{0}/?api_key={1}&format=json&field_list=deck,genres,id,image,images,name,original_game_rating,original_release_date,similar_games,site_detail_url,themes,videos,platforms", id, apikey);
 
             GameDetail temp = new GameDetail();
             temp = JsonConvert.DeserializeObject<GameDetail>(ApiCall.ApiGET(url));

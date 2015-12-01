@@ -18,43 +18,17 @@ namespace NexOneVS.Models.Game
 
         public class Results
         {
-            public object aliases { get; set; }
-            public string api_detail_url { get; set; }
-            public string date_added { get; set; }
-            public string date_last_updated { get; set; }
             public string deck { get; set; }
-            public string description { get; set; }
-            public object expected_release_day { get; set; }
-            public object expected_release_month { get; set; }
-            public object expected_release_quarter { get; set; }
-            public object expected_release_year { get; set; }
             public int id { get; set; }
             public Image image { get; set; }
             public string name { get; set; }
-            public int number_of_user_reviews { get; set; }
             public Original_Game_Rating[] original_game_rating { get; set; }
             public string original_release_date { get; set; }
             public Platform[] platforms { get; set; }
             public string site_detail_url { get; set; }
             public Image1[] images { get; set; }
             public Video[] videos { get; set; }
-            public Character[] characters { get; set; }
-            public Concept[] concepts { get; set; }
-            public Developer[] developers { get; set; }
-            public First_Appearance_Characters[] first_appearance_characters { get; set; }
-            public First_Appearance_Concepts[] first_appearance_concepts { get; set; }
-            public First_Appearance_Locations[] first_appearance_locations { get; set; }
-            public First_Appearance_Objects[] first_appearance_objects { get; set; }
-            public First_Appearance_People[] first_appearance_people { get; set; }
-            public Franchise[] franchises { get; set; }
             public Genre[] genres { get; set; }
-            public object killed_characters { get; set; }
-            public Location[] locations { get; set; }
-            public Object[] objects { get; set; }
-            public Person[] people { get; set; }
-            public Publisher[] publishers { get; set; }
-            public Release[] releases { get; set; }
-            public Review[] reviews { get; set; }
             public Similar_Games[] similar_games { get; set; }
             public Theme[] themes { get; set; }
         }
@@ -106,127 +80,7 @@ namespace NexOneVS.Models.Game
             public string site_detail_url { get; set; }
         }
 
-        public class Character
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Concept
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Developer
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class First_Appearance_Characters
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class First_Appearance_Concepts
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class First_Appearance_Locations
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class First_Appearance_Objects
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class First_Appearance_People
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Franchise
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
         public class Genre
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Location
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Object
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Person
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Publisher
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Release
-        {
-            public string api_detail_url { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
-            public string site_detail_url { get; set; }
-        }
-
-        public class Review
         {
             public string api_detail_url { get; set; }
             public int id { get; set; }
