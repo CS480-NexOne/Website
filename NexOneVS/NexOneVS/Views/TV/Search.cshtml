@@ -1,6 +1,6 @@
 ﻿@using NexOneVS.ViewModels
-@using NexOneVS.Models.Movie
-@model SearchViewModel
+@using NexOneVS.Models.TV
+@model TVSearchViewModel
 @{
     ViewBag.Title = "Search";
 }
@@ -31,18 +31,18 @@
     </div>
 </div>
 
-@if (Model.Movies != null)
+@if (Model.TV != null)
 {
     <div class="container-fluid topOffset20">
         <div class="row">
             @{ int i = 1; }
 
-            @foreach (MovieDB.Result result in Model.Movies.results)
+            @foreach (TVDB.Result result in Model.TV.results)
             {
                 if (!result.poster_path.IsEmpty())
                 {
                     <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-                        <a href="@Url.Action("Title", "Movies", new { id = result.id })" class="thumbnail">
+                        <a href="@Url.Action("Title", "TV", new { id = result.id })" class="thumbnail">
                             <img src="http://image.tmdb.org/t/p/w300/@result.poster_path" alt="@result.poster_path" class="img-responsive" />
                         </a>
                     </div>

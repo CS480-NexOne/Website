@@ -1,10 +1,10 @@
 ﻿@using System.Globalization
-@using NexOneVS.Models.Movie
+@using NexOneVS.Models.TV
 @using NexOneVS.ViewModels
-@model ViewModel
+@model TVViewModel
 
 @{
-    ViewBag.Title = @Model.Title.original_title + " (" + @Model.Title.release_date.Substring(0, 4) + ")";
+     ViewBag.Title = @Model.Title.name;
 }
 
 <div class="container">
@@ -14,9 +14,12 @@
         <div class="col-lg-12">
             <h1 class="page-header">
                 <a href="@Model.Title.homepage" target="_blank">
-                    @Model.Title.original_title
+                    @Model.Title.name
                 </a>
-                <small>(@Model.Title.release_date.Substring(0, 4))</small>
+                @if (Model.Title.release_date != null)
+                {
+                    <small>(@Model.Title.release_date.Substring(0, 4))</small>
+                }
             </h1>
         </div>
     </div>
@@ -25,7 +28,7 @@
     <div class="row">
 
         <div class="col-md-4 col-sm-6 col-xs-12">
-            <img src="http://image.tmdb.org/t/p/w500/@Model.Title.poster_path" alt="@Model.Title.original_title" class="img-responsive" />
+            <img src="http://image.tmdb.org/t/p/w500/@Model.Title.poster_path" alt="@Model.Title.name" class="img-responsive" />
 
         </div>
 
@@ -51,22 +54,16 @@
             <h3>Statistics</h3>
 
             <ul>
-                <li><b>Runtime: </b>@(String.Format("{0} {1}", Model.Title.runtime, "min"))</li>
-                @if (Model.Title.budget > 0)
-                {
-                    <li><b>Budget: </b>@(String.Format("{0}{1}", "$", Model.Title.budget.ToString("N0")))</li>
-                }
+                <li><b>Seasons: </b>@(String.Format("{0}", Model.Title.number_of_seasons))</li>
+                <li><b>Episodes: </b>@(String.Format("{0}", Model.Title.number_of_episodes))</li>
+                <li><b>Runtime: </b>@(String.Format("{0} {1}", Model.Title.episode_run_time[0], "min"))</li>
                 @if (Model.Title.revenue > 0)
                 {
                     <li><b>Revenue: </b>@(String.Format("{0}{1}", "$", Model.Title.revenue.ToString("N0")))</li>
                 }
-                @if (Model.Title.imdb_id != "")
-                {
-                    <li><b>IMDB: </b><a href="@(String.Format("{0}{1}", "http://www.imdb.com/title/", Model.Title.imdb_id ))" target="_blank">link <i class="fa fa-external-link"></i></a></li>
-                }
 
             </ul>
-            @using (Html.BeginForm("AddToList", "TV", new { id = Model.Title.id, name = Model.Title.original_title, image = @Model.Title.poster_path }))
+            @using (Html.BeginForm("AddToList", "TV", new { id = Model.Title.id, name = Model.Title.name, image = @Model.Title.poster_path }))
             {
                 <p>
                     <br />
@@ -212,39 +209,12 @@
             {
                 <div class="paddingR10">
 
-                    <a href="@Url.Action("Title", "Movies", new { id = other.id })" class="thumbnail">
+                    <a href="@Url.Action("Title", "TV", new { id = other.id })" class="thumbnail">
                         <img class="media-object lazyOwl" data-src="https://image.tmdb.org/t/p/w300/@other.poster_path" src="https://image.tmdb.org/t/p/w300/@other.poster_path" alt="...">
                     </a>
                 </div>
             }
         </div>
-
-    </div>
-
-    <div class="row">
-
-        <div class="col-lg-12">
-            <h3 class="page-header">Review</h3>
-            @foreach (Review.Result review in Model.Review.results)
-            {
-                <div class="media">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object" src="~/Images/usericon.png" alt="...">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">@review.author</h4>
-                        @Html.Raw(review.content)
-                    </div>
-                </div>
-            }
-
-        </div>
-
-
-    </div>
-
 
 
 
