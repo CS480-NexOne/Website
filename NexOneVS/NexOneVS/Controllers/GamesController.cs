@@ -98,7 +98,9 @@ namespace NexOneVS.Controllers
 
         public SearchGameDB getNew()
         {
-            string url = string.Format("http://www.giantbomb.com/api/games/?api_key={0}&sort=original_release_date:desc&format=json&limit=50&filter=original_release_date:1990-1-1|2015-10-1", apikey);
+            DateTime dateTime = DateTime.UtcNow.Date;
+            string today = dateTime.ToString("yyyy-mm-dd");
+            string url = string.Format("http://www.giantbomb.com/api/games/?api_key={0}&sort=original_release_date:desc&format=json&limit=50&filter=original_release_date:1990-1-1|{1}", apikey, today);
 
             SearchGameDB gdb = new SearchGameDB();
             gdb = JsonConvert.DeserializeObject<SearchGameDB>(ApiCall.ApiGET(url));
